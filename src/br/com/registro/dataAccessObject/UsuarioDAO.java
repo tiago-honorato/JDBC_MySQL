@@ -21,6 +21,7 @@ public class UsuarioDAO {
 			
 			ps.execute();
 			ps.close();
+			System.out.println("Registro salvo com sucesso!");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
