@@ -1,4 +1,4 @@
-package br.com.registro.models;
+package br.com.registro.model;
 
 public class Usuario {
 
