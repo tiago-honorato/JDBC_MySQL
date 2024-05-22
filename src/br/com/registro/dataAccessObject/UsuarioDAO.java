@@ -27,11 +27,18 @@ public class UsuarioDAO {
 			ps.setString(3, user.getEmail());
 			
 			ps.execute();
-			ps.close();
 			System.out.println("Registro salvo com sucesso!");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			
+			try {
+				if(ps != null) ps.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			
 		}
 		
 	}
@@ -39,13 +46,15 @@ public class UsuarioDAO {
 	//read
 	public List<Usuario> obterUsuarios(){
 		
+		//comando sql para selecionar
 		String sql = "SELECT * FROM usuario";
 		
+		//Lista para armazenar os usuários recuperados do banco de dados
 		List<Usuario> users = new ArrayList<Usuario>();
 		
 		PreparedStatement ps = null;
 		
-		//Classe que vai receber os dados do banco de dados
+		//Objeto que vai receber os dados do banco de dados
 		ResultSet rs = null;
 		
 		try {
@@ -79,6 +88,42 @@ public class UsuarioDAO {
 		return users;
 		
 	}
-	
+
+	//update
+	public void atualizarUsuario(Usuario user) {
+		
+		String sql = "UPDATE usuario SET nome = ?, idade = ?, email = ?	"+" WHERE id_usuario = ?";
+		
+		PreparedStatement ps = null;
+		
+		try {
+			
+			ps = Conexao.getConexao().prepareStatement(sql);
+			ps.setString(1, user.getNome());
+			ps.setInt(2, user.getIdade());
+			ps.setString(3, user.getEmail());
+			
+			ps.setInt(4, user.getId_usuario());
+			
+			ps.execute();
+			System.out.println("Registro atualizado com sucesso!");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if (ps != null) {
+					ps.close();
+				}
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			
+		}
+		
+	}
 	
 }

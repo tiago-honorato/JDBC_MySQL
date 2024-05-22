@@ -10,14 +10,22 @@ public class Main {
 		System.out.println("Programa inicializado!");
 		
 		//criando e salvando um usuario
+		
+//		Usuario u = new Usuario();
+//		u.setNome("Rosa");
+//		u.setIdade(32);
+//		u.setEmail("roseta@yahoo.com");
+		
+		//atualizando um usuario
 		Usuario u = new Usuario();
-		u.setNome("Tiago");
-		u.setIdade(23);
-		u.setEmail("tiago@gmail.com");
+		u.setNome("Roseta Lina");
+		u.setIdade(33);
+		u.setEmail("roseta@yahoo.com");
+		u.setId_usuario(5);
 		
 		UsuarioDAO dao = new UsuarioDAO();
 		
-		dao.cadastrarUsuario(u);
+		dao.atualizarUsuario(u);
 		
 		//listando todos usuarios
 		for(Usuario user : dao.obterUsuarios()) {
@@ -27,6 +35,8 @@ public class Main {
 			System.out.println("Idade: " + user.getIdade());
 			System.out.println("Email: " + user.getEmail());
 			System.out.println();
+			
+			
 			
 		}
 		
