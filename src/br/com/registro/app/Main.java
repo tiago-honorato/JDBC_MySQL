@@ -25,7 +25,10 @@ public class Main {
 		
 		UsuarioDAO dao = new UsuarioDAO();
 		
-		dao.atualizarUsuario(u);
+		//dao.atualizarUsuario(u);
+		
+		//deletar usuario por ID
+		dao.deletarUsuario(5);
 		
 		//listando todos usuarios
 		for(Usuario user : dao.obterUsuarios()) {

@@ -126,4 +126,39 @@ public class UsuarioDAO {
 		
 	}
 	
+	//delete
+	public void deletarUsuario(int id) {
+		
+		String sql = "DELETE FROM usuario WHERE id_usuario = ?";
+		
+		PreparedStatement ps = null;
+		
+		try {
+			
+			ps = Conexao.getConexao().prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ps.execute();
+			System.out.println("Registro deletado com sucesso!");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			try {
+				
+				if (ps != null) {
+					
+					ps.close();
+					
+				}
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			
+		}
+		
+	}
 }
