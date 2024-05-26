@@ -1,16 +1,11 @@
 package br.com.registro.connection;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Properties;
 
 public class Conexao {
-
-	//caminho do banco de dados
-	private static final String URL = "jdbc:mysql://localhost:3306/registrosdb";
-	//nome do usuario do mysql
-	private static final String USER = "root";
-	//senha do banco de dados
-	private static final String PASSWORD = "senha123";
 	
 	private static Connection conn;
 	
@@ -19,6 +14,12 @@ public class Conexao {
 		try {
 			
 			if(conn == null) {
+				
+				Properties prop = getProperties();
+				
+				final String URL = prop.getProperty("database.url");
+				final String USER = prop.getProperty("database.user");
+				final String PASSWORD = prop.getProperty("database.password");
 				
 				conn = DriverManager.getConnection(URL, USER, PASSWORD);
 				return conn;
@@ -36,6 +37,17 @@ public class Conexao {
 		}
 
 		
+	}
+	
+	private static Properties getProperties() throws IOException {
+		
+		Properties prop = new Properties();
+		
+		String path = "/conexao.properties";
+		
+		prop.load(Conexao.class.getResourceAsStream(path));
+		
+		return prop;
 	}
 	
 }
