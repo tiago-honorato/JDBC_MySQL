@@ -32,8 +32,9 @@ Mysql-JDBC/
 │ │ └── Conexao.java
 │ ├── dataAccessObject/
 │ │ └── UsuarioDAO.java
-│ └── model/
-│ └── Usuario.java
+│ ├── model/
+│ │ └── Usuario.java
+│ └── conexao.properties
 │
 ├── .git/
 ├── .settings/
@@ -42,6 +43,7 @@ Mysql-JDBC/
 ├── create-database.sql
 ├── create-table.sql
 └── README.md
+
 ```
 ## Pré-requisitos
 
@@ -63,7 +65,7 @@ Mysql-JDBC/
    
     execute o script `create-table.sql`
 
-4. Configure o arquivo `Conexao.java`
+4. Configure o arquivo `conexao.properties`
 
     Atualize as credenciais e a URL de conexão com o banco de dados
 
